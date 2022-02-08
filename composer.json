@@ -1,0 +1,50 @@
+{
+    "name": "laragear/poke",
+    "description": "Keep your forms alive, avoid TokenMismatchException by gently poking your Laravel app",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Italo Baeza C.",
+            "email": "darkghosthunter@gmail.com",
+            "homepage": "https://patreon.com/packagesforlaravel"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.2",
+        "illuminate/http": "9.*",
+        "illuminate/routing": "9.*",
+        "illuminate/support": "9.*",
+        "illuminate/view": "9.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "7.*",
+        "phpunit/phpunit": "^9.5.13"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Laragear\\Poke\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laragear\\Poke\\PokeServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --coverage-clover build/logs/clover.xml",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
