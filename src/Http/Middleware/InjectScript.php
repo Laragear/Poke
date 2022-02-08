@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Blade;
+use Laragear\Poke\Views\Components\Script;
 use function csrf_field;
 use function strpos;
 use function substr_replace;
@@ -96,7 +97,7 @@ class InjectScript
         // so we will bail out returning the original untouched content.
         if ($endBodyPosition) {
             $response->setContent(
-                substr_replace($content, Blade::render('<x-laragear.poke-script :force="true" />'), $endBodyPosition, 0)
+                substr_replace($content, Blade::renderComponent(new Script(true)), $endBodyPosition, 0)
             );
         }
     }
