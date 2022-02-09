@@ -87,10 +87,17 @@ class InjectScript
      *
      * @param  \Illuminate\Http\Response  $response
      * @return void
+     *
+     * @see https://github.com/php/php-src/blob/05023a281ddb62186fa47f51192ea51ba10f3a9b/ext/standard/string.c#L1845
      */
     protected function injectScript(Response $response): void
     {
-        $endBodyPosition = strpos($content = $response->content(), '</body>');
+        $content = $response->content();
+
+        // With an offset of just 32 characters, we'll speed up the lookup
+        // since the ending `</body>` tag can be found at the end of the
+        // response. Usually the tag is not far from the response end.
+        $endBodyPosition = strpos($content, '</body>', -32);
 
         // To inject the script automatically, we will do it before the ending
         // body tag. If it's not found, the response may not be valid HTML,
