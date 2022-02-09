@@ -73,7 +73,7 @@ Route::get('register', RegisterController::class)->middleware('poke');
 
 This will inject the script into the route response if there is an input with a CSRF token. You can also apply this to a [route group](https://laravel.com/docs/routing#route-groups).
 
-You may want to use the `force` option to forcefully inject the script at the end of the `<body>` tag, regardless of the CSRF token presence. This may be handy when you expect to dynamically load forms on a view after its loaded.
+You may want to use the `force` option to forcefully inject the script at the end of the `<body>` tag, regardless of the CSRF token input presence. This may be handy when you expect to dynamically load forms on a view after its loaded, or SPA.
 
 ```php
 use Illuminate\Support\Facades\Route;
@@ -82,11 +82,11 @@ use App\Http\Controllers\StatusController;
 Route::get('status', StatusController::class)->middleware('poke:force');
 ```
 
-As with [`auto` mode](#auto), This mode won't inject the script on no-successful responses (anything not HTTP 2xx), like on errors or redirections.
+As with [`auto` mode](#auto), this mode won't inject the script on errors or redirections.
 
 ### `blade`
 
-The `blade` mode disables any injection, and instead allows you to use the `<x-laragear.poke-script />` component freely to inject the script anywhere in your view, preferably before the closing `</body>` tag.
+The `blade` mode disables middleware injection, so you can use the `<x-laragear.poke-script />` component freely to inject the script anywhere in your view, preferably before the closing `</body>` tag.
 
 ```blade
 <body>
@@ -102,6 +102,8 @@ The `blade` mode disables any injection, and instead allows you to use the `<x-l
 </body>
 ```
 
+This may be useful if you have large responses, like blog posts, articles or galleries, since the framework won't spend resources inspecting the response, but just rendering the component.
+
 > Don't worry if you have duplicate Poke components in your view. The script is rendered only once, and even if not, the script only runs once.
 
 ## Configuration
@@ -109,20 +111,20 @@ The `blade` mode disables any injection, and instead allows you to use the `<x-l
 For fine-tuning, you can publish the `poke.php` config file.
 
 ```bash
-php artisan vendor:publish --provider=Laragear\Poke\PokeServiceProvider
+php artisan vendor:publish --provider="Laragear\Poke\PokeServiceProvider" --tag="config"
 ```
 
 Let's examine the configuration array:
 
 ```php
-<?php return [
+return [
     'mode' => env('POKE_MODE', 'auto'),
     'times' => 4,
     'poking' => [
         'route' => 'poke',
         'name' => 'poke',
         'domain' => null,
-        'middleware' => ['web'],
+        'middleware' => 'web',
     ]
 ];
 ```
@@ -140,16 +142,14 @@ For example, if our session lifetime is the default of 120 minutes:
 
 In other words, `session lifetime / times = poking interval`.
 
-- Raise the intervals if you expect users idling in your site for several minutes.
-- Lower the intervals if you expect users with a lot of activity.
+- 🔺 Raise the intervals if you expect users idling in your site for several minutes, even hours.
+- 🔻 Lower the intervals if you expect users with a lot of activity.
 
 ### Poking
 
 This is the array of settings for the poking route which receives the Poke script request.
 
 ```php
-<?php 
-
 return [
     'poking' => [
         'route' => 'poke',
@@ -165,7 +165,6 @@ return [
 The route (relative to the root URL of your application) that will be using to receive the pokes.
 
 ```php
-<?php 
 return [
     'poking' => [
         'route' => '/dont-sleep'
@@ -180,7 +179,6 @@ return [
 Name of the route, to find the poke route in your app for whatever reason.
 
 ```php
-<?php 
 return [
     'poking' => [
         'name' => 'my-custom-poking-route'
@@ -195,7 +193,6 @@ The Poke route is available on all domains. Setting a given domain will scope th
 In case you are using a domain or domain pattern, it may be convenient to put the Poke route under a certain one. A classic example is to make the poking available at `http://user.myapp.com/poke` but no `http://api.myapp.com/poke`.
 
 ```php
-<?php 
 return [
     'poking' => [
         'domain' => '{user}.myapp.com'
@@ -210,7 +207,6 @@ The default Poke route uses [the `web` middleware group](https://laravel.com/doc
 You can add your own middleware here if you need to.
 
 ```php
-<?php 
 return [
     'poking' => [
         'middleware' => ['web', 'validates-ip', 'my-custom-middleware']
@@ -218,7 +214,7 @@ return [
 ];
 ```
 
-You can also use the "bare minimum" middleware if you feel like it:
+You can also use the "bare minimum" middleware if you feel like it, thus it may be problematic if you don't know what you're doing.
 
 ```php
 return [
@@ -234,7 +230,7 @@ return [
 
 ## Script View
 
-Poke injects the script as a [Blade component](https://laravel.com/docs/blade#components).
+Poke injects the script as a [Blade component](https://laravel.com/docs/blade#components) at all times.
 
 You can override the script by publishing it under the `views` tag:
 
