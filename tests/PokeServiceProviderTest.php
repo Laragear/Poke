@@ -5,10 +5,10 @@ namespace Tests;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Laragear\Poke\Blade\Components\Script;
 use Laragear\Poke\Http\Controllers\PokeController;
 use Laragear\Poke\Http\Middleware\InjectScript;
 use Laragear\Poke\PokeServiceProvider;
-use Laragear\Poke\Views\Components\Script;
 
 class PokeServiceProviderTest extends TestCase
 {
@@ -35,7 +35,7 @@ class PokeServiceProviderTest extends TestCase
 
     public function test_registers_script_view(): void
     {
-        static::assertTrue($this->app->make('view')->exists('laragear.poke::script'));
+        static::assertTrue($this->app->make('view')->exists('poke::script'));
     }
 
     public function test_registers_web_middleware_as_poke(): void
@@ -58,14 +58,18 @@ class PokeServiceProviderTest extends TestCase
         static::assertNotContains(InjectScript::class, $this->app->make(Kernel::class)->getMiddlewareGroups()['web']);
     }
 
-    public function test_publishes_config_and_view_files(): void
+    public function test_publishes_config(): void
     {
         static::assertSame([
             PokeServiceProvider::CONFIG => $this->app->configPath('poke.php'),
         ], ServiceProvider::pathsToPublish(PokeServiceProvider::class, 'config'));
+    }
 
+
+    public function test_publishes_view(): void
+    {
         static::assertSame([
-            PokeServiceProvider::VIEWS => $this->app->viewPath('vendor/laragear/poke'),
+            PokeServiceProvider::VIEWS => $this->app->viewPath('vendor/poke'),
         ], ServiceProvider::pathsToPublish(PokeServiceProvider::class, 'views'));
     }
 
@@ -73,7 +77,7 @@ class PokeServiceProviderTest extends TestCase
     {
         $aliases = $this->app->make('blade.compiler')->getClassComponentAliases();
 
-        static::assertArrayHasKey('laragear.poke-script', $aliases);
-        static::assertSame(Script::class, $aliases['laragear.poke-script']);
+        static::assertArrayHasKey('poke-script', $aliases);
+        static::assertSame(Script::class, $aliases['poke-script']);
     }
 }

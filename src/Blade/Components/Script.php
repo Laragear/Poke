@@ -1,6 +1,6 @@
 <?php
 
-namespace Laragear\Poke\Views\Components;
+namespace Laragear\Poke\Blade\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -40,7 +40,7 @@ class Script extends Component
 
         $session = $config['session.lifetime'] * 60 * 1000;
 
-        return view('laragear.poke::script', [
+        return view('poke::script', [
             'route' => url($config['poke.poking.route']),
             'interval' => (int) ($session / $config['poke.times']),
             'lifetime' => $session,

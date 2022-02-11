@@ -3,8 +3,9 @@
 namespace Tests;
 
 use Laragear\Poke\PokeServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+abstract class TestCase extends BaseTestCase
 {
     protected function getPackageProviders($app): array
     {

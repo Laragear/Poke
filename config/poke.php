@@ -48,10 +48,6 @@ return [
         'route' => 'poke',
         'name' => 'poke',
         'domain' => null,
-        'middleware' => [
-            \Illuminate\Cookie\Middleware\EncryptCookies::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
-        ],
+        'middleware' => ['web'],
     ]
 ];

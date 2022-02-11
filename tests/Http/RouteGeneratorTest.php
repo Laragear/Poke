@@ -1,22 +1,12 @@
 <?php
 
-namespace Tests\Routes;
+namespace Tests\Http;
 
-use Illuminate\Routing\Router;
 use Laragear\Poke\Http\Controllers\PokeController;
 use Tests\TestCase;
 
 class RouteGeneratorTest extends TestCase
 {
-    protected Router $router;
-
-    protected function setUp() : void
-    {
-        parent::setUp();
-
-        $this->router = $this->app->make('router');
-    }
-
     protected function usesNoDomain($app): void
     {
         $app->make('config')->set('poke.poking', [
@@ -32,7 +22,7 @@ class RouteGeneratorTest extends TestCase
      */
     public function test_sets_global_route(): void
     {
-        $routes = $this->router->getRoutes()->getRoutes();
+        $routes = $this->app->make('router')->getRoutes()->getRoutes();
 
         static::assertCount(1, $routes);
 
@@ -59,9 +49,9 @@ class RouteGeneratorTest extends TestCase
     /**
      * @define-env usesSingleDomain
      */
-    public function testSetOneDomainRoute()
+    public function test_set_one_domain_route(): void
     {
-        $route = $this->router->getRoutes()->getRoutes()[0];
+        $route = $this->app->make('router')->getRoutes()->getRoutes()[0];
 
         static::assertSame('test-name', $route->getName());
         static::assertSame(['HEAD'], $route->methods());
@@ -84,8 +74,8 @@ class RouteGeneratorTest extends TestCase
     /**
      * @define-env usesNoRoute
      */
-    public function testDoesntRegisterRoute()
+    public function test_doesnt_register_route(): void
     {
-        static::assertEmpty($this->router->getRoutes()->getRoutes());
+        static::assertEmpty($this->app->make('router')->getRoutes()->getRoutes());
     }
 }

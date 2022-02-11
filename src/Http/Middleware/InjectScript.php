@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Blade;
-use Laragear\Poke\Views\Components\Script;
+use Laragear\Poke\Blade\Components\Script;
 use function csrf_field;
 use function strpos;
 use function substr_replace;

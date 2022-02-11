@@ -24,7 +24,7 @@ class InjectScriptBladeModeTest extends TestCase
         $this->get('component-multiple')
             ->assertSee('start-poke-script')
             ->assertSee(
-                Blade::render('<body><x-laragear.poke-script /></body>'), false
+                Blade::render('<body><x-poke-script /></body>'), false
             );
     }
 
@@ -32,12 +32,12 @@ class InjectScriptBladeModeTest extends TestCase
     {
         $this->app->make('router')->get('component-multiple-forced', function () {
             return Blade::render(
-                '<html><head></head><body><x-laragear.poke-script /><x-laragear.poke-script :force="true" /></body></html>'
+                '<html><head></head><body><x-poke-script /><x-poke-script :force="true" /></body></html>'
             );
         });
 
         $this->get('component-multiple-forced')->assertSee(
-            Blade::render('<html><head></head><body><x-laragear.poke-script /></body></html>'), false
+            Blade::render('<html><head></head><body><x-poke-script /></body></html>'), false
         );
     }
 }

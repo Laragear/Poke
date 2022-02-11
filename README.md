@@ -86,7 +86,7 @@ As with [`auto` mode](#auto), this mode won't inject the script on errors or red
 
 ### `blade`
 
-The `blade` mode disables middleware injection, so you can use the `<x-laragear.poke-script />` component freely to inject the script anywhere in your view, preferably before the closing `</body>` tag.
+The `blade` mode disables middleware injection, so you can use the `<x-poke.script />` component freely to inject the script anywhere in your view, preferably before the closing `</body>` tag.
 
 ```blade
 <body>
@@ -98,7 +98,7 @@ The `blade` mode disables middleware injection, so you can use the `<x-laragear.
         <button type="submit">Log me in!</button>
     </form>
     
-    <x-laragear.poke-script /> <!-- This is a good place to put it -->
+    <x-poke.script /> <!-- This is a good place to put it -->
 </body>
 ```
 

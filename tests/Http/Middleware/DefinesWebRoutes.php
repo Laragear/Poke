@@ -24,19 +24,19 @@ trait DefinesWebRoutes
 
         $router->get('component', function () {
             return Blade::render(
-                '<html><head></head><body><x-laragear.poke-script /></body></html>'
+                '<html><head></head><body><x-poke-script /></body></html>'
             );
         });
 
         $router->get('form-with-component', function () {
             return Blade::render(
-                '<html><head></head><body>@csrf<x-laragear.poke-script /></body></html>'
+                '<html><head></head><body>@csrf<x-poke-script /></body></html>'
             );
         });
 
         $router->get('component-multiple', function () {
             return Blade::render(
-                '<html><head></head><body><x-laragear.poke-script /><x-laragear.poke-script /></body></html>'
+                '<html><head></head><body><x-poke-script /><x-poke-script /></body></html>'
             );
         });
 
