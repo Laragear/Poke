@@ -1,16 +1,29 @@
 {
     "name": "laragear/poke",
     "description": "Keep your forms alive, avoid TokenMismatchException by gently poking your Laravel app",
-    "minimum-stability": "dev",
+    "type": "library",
+    "license": "propietary",
+    "minimum-stability": "stable",
     "prefer-stable": true,
-    "license": "proprietary",
+    "keywords": [
+        "laravel",
+        "poke",
+        "token-mismatch",
+        "csrf",
+        "xsrf",
+        "forms"
+    ],
     "authors": [
         {
-            "name": "Italo Baeza C.",
-            "email": "darkghosthunter@gmail.com",
+            "name": "Italo Israel Baeza Cabrera",
+            "email": "DarkGhostHunter@Gmail.com",
             "homepage": "https://patreon.com/packagesforlaravel"
         }
     ],
+    "support": {
+        "source": "https://github.com/laragear/poke",
+        "issues": "https://github.com/laragear/poke/issues"
+    },
     "require": {
         "php": ">=8.0.2",
         "illuminate/http": "9.*",
@@ -33,6 +46,13 @@
             "Laragear\\Poke\\": "src"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit --coverage-clover build/logs/clover.xml",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -40,11 +60,18 @@
             ]
         }
     },
-    "scripts": {
-        "test": "vendor/bin/phpunit --coverage-clover build/logs/clover.xml",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-    },
-    "config": {
-        "sort-packages": true
-    }
+    "funding": [
+        {
+            "type": "Patreon",
+            "url": "https://patreon.com/PackagesForLaravel"
+        },
+        {
+            "type": "Ko-Fi",
+            "url": "https://ko-fi.com/DarkGhostHunter"
+        },
+        {
+            "type": "Paypal",
+            "url": "https://paypal.me/darkghosthunter"
+        }
+    ]
 }
