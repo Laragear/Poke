@@ -248,6 +248,12 @@ The view receives three variables:
 * `$interval`: The interval in milliseconds the poking should be done.
 * `$lifetime`: The session lifetime in milliseconds.
 
+## Laravel Octane compatibility
+
+- Only the `InjectsScript` middleware is bound as a singleton, and it saves the mode, which will persist across all the process lifetime. The mode is not intended to change request-by-request.
+
+There should be no problems using this package with Laravel Octane.
+
 ## Security
 
 If you discover any security related issues, please email darkghosthunter@gmail.com instead of using the issue tracker.
