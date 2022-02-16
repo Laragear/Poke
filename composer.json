@@ -2,7 +2,7 @@
     "name": "laragear/poke",
     "description": "Keep your forms alive, avoid TokenMismatchException by gently poking your Laravel app",
     "type": "library",
-    "license": "propietary",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "keywords": [
@@ -68,6 +68,10 @@
         {
             "type": "Ko-Fi",
             "url": "https://ko-fi.com/DarkGhostHunter"
+        },
+        {
+            "type": "Buy me a cofee",
+            "url": "https://www.buymeacoffee.com/darkghosthunter"
         },
         {
             "type": "Paypal",
