@@ -30,7 +30,7 @@ class RouteGeneratorTest extends TestCase
 
         static::assertSame('test-name', $route->getName());
         static::assertSame(['HEAD'], $route->methods());
-        static::assertSame(PokeController::class . '@__invoke', $route->getAction()['uses']);
+        static::assertSame(PokeController::class.'@__invoke', $route->getAction()['uses']);
         static::assertSame(['test-middleware'], $route->middleware());
 
         static::assertNull($route->getDomain());
@@ -55,7 +55,7 @@ class RouteGeneratorTest extends TestCase
 
         static::assertSame('test-name', $route->getName());
         static::assertSame(['HEAD'], $route->methods());
-        static::assertSame(PokeController::class . '@__invoke', $route->getAction()['uses']);
+        static::assertSame(PokeController::class.'@__invoke', $route->getAction()['uses']);
         static::assertSame(['test-middleware'], $route->middleware());
 
         static::assertSame('one', $route->getDomain());

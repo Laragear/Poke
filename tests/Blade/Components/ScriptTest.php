@@ -33,8 +33,8 @@ class ScriptTest extends TestCase
         $view = $this->blade('<x-poke-script />');
 
         $view->assertSee("await fetch('http://localhost/poke'", false);
-        $view->assertSee("if (navigator.onLine && new Date() - poke_last >= 1800000 + 7200000)", false);
-        $view->assertSee("setInterval(() => { poke_renew(); }, 1800000 )", false);
+        $view->assertSee('if (navigator.onLine && new Date() - poke_last >= 1800000 + 7200000)', false);
+        $view->assertSee('setInterval(() => { poke_renew(); }, 1800000 )', false);
     }
 
     public function useRandomConfig($app): void
@@ -52,7 +52,7 @@ class ScriptTest extends TestCase
         $view = $this->blade('<x-poke-script />');
 
         $view->assertSee("await fetch('http://localhost/test'", false);
-        $view->assertSee("if (navigator.onLine && new Date() - poke_last >= 600000 + 6000000)", false);
-        $view->assertSee("setInterval(() => { poke_renew(); }, 600000 );", false);
+        $view->assertSee('if (navigator.onLine && new Date() - poke_last >= 600000 + 6000000)', false);
+        $view->assertSee('setInterval(() => { poke_renew(); }, 600000 );', false);
     }
 }
