@@ -2,9 +2,9 @@
 
 namespace Tests\Http\Controllers;
 
+use function now;
 use Symfony\Component\HttpFoundation\Cookie;
 use Tests\TestCase;
-use function now;
 
 class PokeControllerTest extends TestCase
 {

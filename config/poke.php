@@ -1,4 +1,5 @@
 <?php
+
 return [
 
     /*
@@ -49,5 +50,5 @@ return [
         'name' => 'poke',
         'domain' => null,
         'middleware' => ['web'],
-    ]
+    ],
 ];

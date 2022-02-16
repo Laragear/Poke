@@ -2,8 +2,8 @@
 
 namespace Tests\Http\Middleware;
 
-use Tests\TestCase;
 use function substr_count;
+use Tests\TestCase;
 
 class InjectScriptAutoModeTest extends TestCase
 {
@@ -16,7 +16,7 @@ class InjectScriptAutoModeTest extends TestCase
 
     public function test_injects_script_before_closing_body_tag(): void
     {
-        $this->get('form')->assertSee(<<<BODYEND
+        $this->get('form')->assertSee(<<<'BODYEND'
         // end-poke-script
     </script>
 </body>

@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
 class PokeServiceProvider extends ServiceProvider
 {
     public const CONFIG = __DIR__.'/../config/poke.php';
-    public const VIEWS = __DIR__ . '/../resources/views';
+    public const VIEWS = __DIR__.'/../resources/views';
 
     /**
      * Register any application services.
@@ -36,6 +36,7 @@ class PokeServiceProvider extends ServiceProvider
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function boot(Router $router, Repository $config): void

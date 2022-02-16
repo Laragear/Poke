@@ -3,11 +3,11 @@
 namespace Laragear\Poke\Http\Middleware;
 
 use Closure;
+use function csrf_field;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Blade;
 use Laragear\Poke\Blade\Components\Script;
-use function csrf_field;
 use function strpos;
 use function substr_replace;
 
@@ -29,7 +29,6 @@ class InjectScript
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @param  string|null  $force
-     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next, string $force = null): mixed
@@ -86,7 +85,7 @@ class InjectScript
     }
 
     /**
-     * Sets the Script in the body
+     * Sets the Script in the body.
      *
      * @param  \Illuminate\Http\Response  $response
      * @return void

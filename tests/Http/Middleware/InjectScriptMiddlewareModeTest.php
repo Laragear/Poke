@@ -2,8 +2,8 @@
 
 namespace Tests\Http\Middleware;
 
-use Tests\TestCase;
 use function substr_count;
+use Tests\TestCase;
 
 class InjectScriptMiddlewareModeTest extends TestCase
 {
@@ -37,7 +37,7 @@ class InjectScriptMiddlewareModeTest extends TestCase
     {
         $this->addMiddleware('form', 'poke');
 
-        $this->get('form')->assertSee(<<<BODYEND
+        $this->get('form')->assertSee(<<<'BODYEND'
         // end-poke-script
     </script>
 </body>
