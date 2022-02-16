@@ -22,8 +22,6 @@ class PokeServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(static::CONFIG, 'poke');
 
-        $this->app->singleton(Blade\Components\Script::class);
-
         $this->app->singleton(
             Http\Middleware\InjectScript::class,
             static function (Application $app): Http\Middleware\InjectScript {

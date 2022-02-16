@@ -65,7 +65,6 @@ class PokeServiceProviderTest extends TestCase
         ], ServiceProvider::pathsToPublish(PokeServiceProvider::class, 'config'));
     }
 
-
     public function test_publishes_view(): void
     {
         static::assertSame([
