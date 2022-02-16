@@ -53,22 +53,25 @@ class InjectScript
      */
     public function shouldInject(Request $request, mixed $response, bool $force): bool
     {
-        if (
-            $this->mode !== 'blade' &&
-            $response instanceof Response &&
-            $response->isSuccessful() &&
-            $request->acceptsHtml()
-        ) {
-            // The "auto" mode means to globally check if this is injectable.
-            if ($this->mode === 'auto') {
-                return $this->hasCsrfInput($response);
-            }
-
-            // Otherwise, the mode is "middleware": signal a forceful injection or CSRF input.
-            return $force || $this->hasCsrfInput($response);
+        if ($this->mode === 'blade') {
+            return false;
         }
 
-        return false;
+        if ($response instanceof Response && ! $response->isSuccessful()) {
+            return false;
+        }
+
+        if (! $request->acceptsHtml()) {
+            return false;
+        }
+
+        // The "auto" mode means to globally check if this is injectable.
+        if ($this->mode === 'auto') {
+            return $this->hasCsrfInput($response);
+        }
+
+        // Otherwise, the mode is "middleware": signal a forceful injection or CSRF input.
+        return $force || $this->hasCsrfInput($response);
     }
 
     /**
