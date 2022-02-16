@@ -19,6 +19,13 @@ class InjectScriptBladeModeTest extends TestCase
         $this->get('form')->assertDontSee('start-poke-script');
     }
 
+    public function test_doesnt_inject_scripts_using_middleware(): void
+    {
+        $this->addMiddleware('form', 'poke');
+
+        $this->get('form')->assertDontSee('start-poke-script');
+    }
+
     public function test_renders_once_on_multiple_declarations(): void
     {
         $this->get('component-multiple')
