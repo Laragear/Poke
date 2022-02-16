@@ -2,9 +2,9 @@
 
 namespace Laragear\Poke\Blade\Components;
 
+use function config;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use function config;
 use function url;
 use function view;
 
@@ -31,7 +31,7 @@ class Script extends Component
             'session.lifetime',
             'poke.mode',
             'poke.poking.route',
-            'poke.times'
+            'poke.times',
         ]);
 
         if ($config['poke.mode'] !== 'blade' && ! $this->force) {
