@@ -3,11 +3,11 @@
 namespace Laragear\Poke\Http\Middleware;
 
 use Closure;
-use function csrf_field;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Blade;
 use Laragear\Poke\Blade\Components\Script;
+use Symfony\Component\HttpFoundation\Response;
+use function csrf_field;
 use function strpos;
 use function substr_replace;
 
@@ -50,17 +50,10 @@ class InjectScript
      * @param  bool  $force
      * @return bool
      */
-    public function shouldInject(Request $request, mixed $response, bool $force): bool
+    public function shouldInject(Request $request, Response $response, bool $force): bool
     {
-        if ($this->mode === 'blade') {
-            return false;
-        }
-
-        if ($response instanceof Response && ! $response->isSuccessful()) {
-            return false;
-        }
-
-        if (! $request->acceptsHtml()) {
+        // Don't render on blade, not successful or non HTML responses.
+        if ($this->mode === 'blade' || ! $response->isSuccessful() || ! $request->acceptsHtml()) {
             return false;
         }
 

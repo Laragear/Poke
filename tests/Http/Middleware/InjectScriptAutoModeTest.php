@@ -2,8 +2,8 @@
 
 namespace Tests\Http\Middleware;
 
-use function substr_count;
 use Tests\TestCase;
+use function substr_count;
 
 class InjectScriptAutoModeTest extends TestCase
 {
@@ -44,9 +44,14 @@ BODYEND
         $this->get('no-end-body')->assertDontSee('start-poke-script');
     }
 
-    public function test_doesnt_injects_on_not_successful(): void
+    public function test_doesnt_injects_on_error(): void
     {
         $this->get('error')->assertDontSee('start-poke-script');
+    }
+
+    public function test_doesnt_injects_on_redirect(): void
+    {
+        $this->get('redirect')->assertRedirect()->assertDontSee('start-poke-script');
     }
 
     public function test_doesnt_injects_on_json(): void

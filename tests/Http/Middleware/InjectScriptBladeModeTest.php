@@ -26,6 +26,11 @@ class InjectScriptBladeModeTest extends TestCase
         $this->get('form')->assertDontSee('start-poke-script');
     }
 
+    public function test_doesnt_injects_on_redirect(): void
+    {
+        $this->get('redirect')->assertDontSee('start-poke-script');
+    }
+
     public function test_renders_once_on_multiple_declarations(): void
     {
         $this->get('component-multiple')

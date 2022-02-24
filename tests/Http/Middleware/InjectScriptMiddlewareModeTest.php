@@ -2,8 +2,8 @@
 
 namespace Tests\Http\Middleware;
 
-use function substr_count;
 use Tests\TestCase;
+use function substr_count;
 
 class InjectScriptMiddlewareModeTest extends TestCase
 {
@@ -66,6 +66,13 @@ BODYEND
         $this->get('error')->assertDontSee('start-poke-script');
     }
 
+    public function test_doesnt_injects_on_redirect(): void
+    {
+        $this->addMiddleware('redirect', 'poke');
+
+        $this->get('redirect')->assertDontSee('start-poke-script');
+    }
+
     public function test_doesnt_injects_on_json(): void
     {
         $this->addMiddleware('form', 'poke');
@@ -106,6 +113,13 @@ BODYEND
         $this->addMiddleware('error', 'poke:force');
 
         $this->get('error')->assertDontSee('start-poke-script');
+    }
+
+    public function test_forced_injection_failed_on_redirect(): void
+    {
+        $this->addMiddleware('redirect', 'poke:force');
+
+        $this->get('redirect')->assertDontSee('start-poke-script');
     }
 
     public function test_forced_injection_failed_on_json(): void
