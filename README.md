@@ -1,11 +1,16 @@
 # Poke
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laragear/poke.svg)](https://packagist.org/packages/laragear/poke) [![Latest stable test run](https://github.com/Laragear/Poke/workflows/Tests/badge.svg)](https://github.com/Laragear/Poke/actions) [![Codecov coverage](https://codecov.io/gh/Laragear/Poke/branch/1.x/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke) [![Maintainability](https://api.codeclimate.com/v1/badges/3954af3144475603ae67/maintainability)](https://codeclimate.com/github/Laragear/Poke/maintainability) [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Laragear_Poke&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laragear_Poke) [![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/9.x/octane#introduction)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laragear/poke.svg)](https://packagist.org/packages/laragear/poke)
+[![Latest stable test run](https://github.com/Laragear/Poke/workflows/Tests/badge.svg)](https://github.com/Laragear/Poke/actions)
+[![Codecov coverage](https://codecov.io/gh/Laragear/Poke/branch/1.x/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3954af3144475603ae67/maintainability)](https://codeclimate.com/github/Laragear/Poke/maintainability)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Laragear_Poke&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laragear_Poke)
+[![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/9.x/octane#introduction)
 
 Keep your forms alive, avoid `TokenMismatchException` by gently poking your Laravel app.
 
-## Keep this package free
+## Become a sponsor
 
-[![](.assets/patreon.png)](https://patreon.com/packagesforlaravel)[![](.assets/ko-fi.png)](https://ko-fi.com/DarkGhostHunter)[![](.assets/buymeacoffee.png)](https://www.buymeacoffee.com/darkghosthunter)[![](.assets/paypal.png)](https://www.paypal.com/paypalme/darkghosthunter)
+[![](.github/assets/support.png)](https://github.com/sponsors/DarkGhostHunter)
 
 Your support allows me to keep this package free, up-to-date and maintainable. Alternatively, you can **[spread the word!](http://twitter.com/share?text=I%20am%20using%20this%20cool%20PHP%20package&url=https://github.com%2FLaragear%2FPoke&hashtags=PHP,Laravel)**
 
