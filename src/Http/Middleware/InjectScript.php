@@ -3,13 +3,13 @@
 namespace Laragear\Poke\Http\Middleware;
 
 use Closure;
-use function csrf_field;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Laragear\Poke\Blade\Components\Script;
+use Symfony\Component\HttpFoundation\Response;
+use function csrf_field;
 use function strpos;
 use function substr_replace;
-use Symfony\Component\HttpFoundation\Response;
 
 class InjectScript
 {
@@ -46,7 +46,7 @@ class InjectScript
      * Determine if we should inject the script into the response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $response
+     * @param  \Illuminate\Http\Response  $response
      * @param  bool  $force
      * @return bool
      */
