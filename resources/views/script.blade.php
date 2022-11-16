@@ -1,12 +1,6 @@
 @once
     <script>
         // start-poke-script
-        if (typeof poke_reload_window === 'undefined') {
-            const poke_reload_window = () => {
-                window.location.reload();
-            };
-        }
-
         if (typeof poke_renew === 'undefined') {
             let poke_last = new Date();
 
@@ -28,7 +22,7 @@
 
             const poke_expire_check = () => {
                 if (navigator.onLine && new Date() - poke_last >= {{ $interval }} + {{ $lifetime }}) {
-                    poke_reload_window();
+                    window.location.reload();
                 }
             };
 
