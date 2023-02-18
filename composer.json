@@ -33,7 +33,7 @@
         "illuminate/view": "9.*|10.*"
     },
     "require-dev": {
-        "laragear/meta-testing": "1.2.1",
+        "laragear/meta-testing": "^1.2.2",
         "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.22|8.*"
     },
