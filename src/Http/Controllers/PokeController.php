@@ -13,6 +13,6 @@ class PokeController
      */
     public function __invoke(): Response
     {
-        return new Response('', 204);
+        return new Response(status: 204);
     }
 }

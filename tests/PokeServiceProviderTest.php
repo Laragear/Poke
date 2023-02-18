@@ -3,8 +3,8 @@
 namespace Tests;
 
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
+use Laragear\MetaTesting\InteractsWithServiceProvider;
 use Laragear\Poke\Blade\Components\Script;
 use Laragear\Poke\Http\Controllers\PokeController;
 use Laragear\Poke\Http\Middleware\InjectScript;
@@ -12,37 +12,35 @@ use Laragear\Poke\PokeServiceProvider;
 
 class PokeServiceProviderTest extends TestCase
 {
+    use InteractsWithServiceProvider;
+
     public function test_receives_default_config(): void
     {
-        static::assertEquals(
-            File::getRequire(__DIR__.'/../config/poke.php'),
-            $this->app->make('config')->get('poke')
-        );
+        $this->assertConfigMerged(__DIR__.'/../config/poke.php', 'poke');
+    }
+
+    public function test_registers_view_injector_as_singleton(): void
+    {
+        $this->assertHasSingletons(InjectScript::class);
     }
 
     public function test_loads_default_poke_route()
     {
-        /** @var \Illuminate\Routing\Router $router */
-        $router = $this->app->make('router');
+        $route = $this->assertRouteByName('poke');
 
-        $route = $router->getRoutes()->match(
-            $this->app->make('request')->create('/poke', 'HEAD')
-        );
-
-        static::assertEquals('poke', $route->getName());
+        static::assertTrue($route->matches(Request::create('/poke', 'HEAD')));
         static::assertInstanceOf(PokeController::class, $route->getController());
     }
 
     public function test_registers_script_view(): void
     {
-        static::assertTrue($this->app->make('view')->exists('poke::script'));
+        $this->assertHasViews(PokeServiceProvider::VIEWS, 'poke');
     }
 
     public function test_registers_web_middleware_as_poke(): void
     {
-        static::assertContains(InjectScript::class, $this->app->make(Kernel::class)->getMiddlewareGroups()['web']);
-
-        static::assertArrayHasKey('poke', $this->app->make('router')->getMiddleware());
+        $this->assertHasMiddlewareAlias('poke', InjectScript::class);
+        $this->assertHasMiddlewareInGroup('web', InjectScript::class);
     }
 
     protected function setModeToNonAuto($app): void
@@ -60,23 +58,16 @@ class PokeServiceProviderTest extends TestCase
 
     public function test_publishes_config(): void
     {
-        static::assertSame([
-            PokeServiceProvider::CONFIG => $this->app->configPath('poke.php'),
-        ], ServiceProvider::pathsToPublish(PokeServiceProvider::class, 'config'));
+        $this->assertPublishes($this->app->configPath('poke.php'), 'config');
     }
 
     public function test_publishes_view(): void
     {
-        static::assertSame([
-            PokeServiceProvider::VIEWS => $this->app->viewPath('vendor/poke'),
-        ], ServiceProvider::pathsToPublish(PokeServiceProvider::class, 'views'));
+        $this->assertPublishes($this->app->viewPath('vendor/poke'), 'views');
     }
 
     public function test_registers_blade_component(): void
     {
-        $aliases = $this->app->make('blade.compiler')->getClassComponentAliases();
-
-        static::assertArrayHasKey('poke-script', $aliases);
-        static::assertSame(Script::class, $aliases['poke-script']);
+        $this->assertHasBladeComponent('poke-script', Script::class);
     }
 }

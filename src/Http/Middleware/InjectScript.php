@@ -3,13 +3,13 @@
 namespace Laragear\Poke\Http\Middleware;
 
 use Closure;
-use function csrf_field;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Laragear\Poke\Blade\Components\Script;
+use Symfony\Component\HttpFoundation\Response;
+use function csrf_field;
 use function strpos;
 use function substr_replace;
-use Symfony\Component\HttpFoundation\Response;
 
 class InjectScript
 {
@@ -18,7 +18,7 @@ class InjectScript
      *
      * @param  string  $mode
      */
-    public function __construct(protected string $mode)
+    public function __construct(protected readonly string $mode)
     {
         //
     }

@@ -3,7 +3,7 @@
 namespace Laragear\Poke\Http;
 
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Laragear\Poke\Http\Controllers\PokeController;
@@ -16,7 +16,7 @@ class RouteConstructor
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Contracts\Config\Repository  $config
      */
-    public function __construct(protected Router $router, protected Repository $config)
+    public function __construct(protected readonly Router $router, protected readonly ConfigContract $config)
     {
         //
     }
