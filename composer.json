@@ -34,7 +34,6 @@
     },
     "require-dev": {
         "laragear/meta-testing": "^1.2.2",
-        "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.22|8.*"
     },
     "autoload-dev": {
