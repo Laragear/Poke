@@ -2,9 +2,9 @@
 
 namespace Laragear\Poke\Blade\Components;
 
-use function config;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use function config;
 use function url;
 use function view;
 
@@ -15,7 +15,7 @@ class Script extends Component
      *
      * @param  bool  $force
      */
-    public function __construct(protected readonly bool $force = false)
+    public function __construct(protected bool $force = false)
     {
         //
     }

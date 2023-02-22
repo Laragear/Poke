@@ -16,7 +16,7 @@ class RouteConstructor
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Contracts\Config\Repository  $config
      */
-    public function __construct(protected readonly Router $router, protected readonly ConfigContract $config)
+    public function __construct(protected Router $router, protected ConfigContract $config)
     {
         //
     }
