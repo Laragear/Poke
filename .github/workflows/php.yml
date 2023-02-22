@@ -82,7 +82,7 @@ jobs:
         run: "composer run-script test"
 
       - name: "Upload coverage to Codecov"
-        uses: "codecov/codecov-action@v2"
+        uses: "codecov/codecov-action@v3"
 
   static_analysis:
     name: "3️⃣ Static Analysis"
