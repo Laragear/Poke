@@ -15,7 +15,7 @@ class Script extends Component
      *
      * @param  bool  $force
      */
-    public function __construct(protected readonly bool $force = false)
+    public function __construct(protected bool $force = false)
     {
         //
     }

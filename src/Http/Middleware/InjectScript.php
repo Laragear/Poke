@@ -18,7 +18,7 @@ class InjectScript
      *
      * @param  string  $mode
      */
-    public function __construct(protected readonly string $mode)
+    public function __construct(protected string $mode)
     {
         //
     }
