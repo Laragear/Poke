@@ -25,8 +25,8 @@
         "issues": "https://github.com/laragear/poke/issues"
     },
     "require": {
-        "php": "^8.1",
-        "laragear/meta": "2.*",
+        "php": "8.*",
+        "laragear/meta": "^2.0.2",
         "illuminate/http": "9.*|10.*",
         "illuminate/routing": "9.*|10.*",
         "illuminate/support": "9.*|10.*",
