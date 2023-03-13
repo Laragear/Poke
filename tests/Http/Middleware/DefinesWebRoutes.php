@@ -4,6 +4,7 @@ namespace Tests\Http\Middleware;
 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
+
 use function redirect;
 use function response;
 
