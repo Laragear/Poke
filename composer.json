@@ -35,7 +35,7 @@
     "require-dev": {
         "laragear/meta-testing": "^1.2.2",
         "orchestra/testbench": "^7.22|8.*",
-        "nikic/php-parser": "^4.15.3"
+        "nikic/php-parser": "^4.15.3 || ^5.0.0"
     },
     "autoload-dev": {
         "psr-4": {
