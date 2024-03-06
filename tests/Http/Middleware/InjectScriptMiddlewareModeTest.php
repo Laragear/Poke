@@ -2,8 +2,9 @@
 
 namespace Tests\Http\Middleware;
 
-use function substr_count;
 use Tests\TestCase;
+
+use function substr_count;
 
 class InjectScriptMiddlewareModeTest extends TestCase
 {
