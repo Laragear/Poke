@@ -4,6 +4,7 @@ namespace Laragear\Poke\Blade\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+
 use function config;
 use function url;
 use function view;
