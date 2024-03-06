@@ -8,13 +8,13 @@ use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Laragear\Poke\Http\Controllers\PokeController;
 
+/**
+ * @internal
+ */
 class RouteConstructor
 {
     /**
      * Create a new Route Generator instance.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @param  \Illuminate\Contracts\Config\Repository  $config
      */
     public function __construct(protected Router $router, protected ConfigContract $config)
     {
@@ -23,8 +23,6 @@ class RouteConstructor
 
     /**
      * Construct the Poke route.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -46,7 +44,7 @@ class RouteConstructor
     /**
      * Parses the configuration.
      *
-     * @return array
+     * @return array{"poke.poking.route": string|null|false, "poke.poking.name": string, "poke.poking.domain": string, "poke.poking.middleware": string|string[]}
      */
     protected function parseConfig(): array
     {
@@ -61,8 +59,7 @@ class RouteConstructor
     /**
      * Returns a Poke route.
      *
-     * @param  array  $config
-     * @return \Illuminate\Routing\Route
+     * @param  array{"poke.poking.route": string|null|false, "poke.poking.name": string, "poke.poking.domain": string, "poke.poking.middleware": string|string[]}  $config
      */
     protected function route(array $config): Route
     {
@@ -75,8 +72,6 @@ class RouteConstructor
 
     /**
      * Create a new instance.
-     *
-     * @return void
      */
     public static function construct(): void
     {

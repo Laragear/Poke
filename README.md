@@ -4,7 +4,7 @@
 [![Codecov coverage](https://codecov.io/gh/Laragear/Poke/branch/1.x/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3954af3144475603ae67/maintainability)](https://codeclimate.com/github/Laragear/Poke/maintainability)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Laragear_Poke&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laragear_Poke)
-[![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/9.x/octane#introduction)
+[![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/11.x/octane#introduction)
 
 Keep your forms alive, avoid `TokenMismatchException` by gently poking your Laravel app.
 
@@ -16,8 +16,7 @@ Your support allows me to keep this package free, up-to-date and maintainable. A
 
 ## Requirements
 
-* PHP 8 or later.
-* Laravel 9, 10 or later.
+* Laravel 10 or later.
 
 ## Installation
 
@@ -66,6 +65,8 @@ If there is any match, this will inject the Poke script in charge to keep the fo
 
 This mode won't inject the script on error responses or redirections.
 
+> [!INFO]
+>
 > It's recommended to use the other modes if your application has many routes or Responses with a lot of text.
 
 ### `middleware`
@@ -112,6 +113,8 @@ The `blade` mode disables middleware injection, so you can use the `<x-poke-scri
 
 This may be useful if you have large responses, like blog posts, articles or galleries, since the framework won't spend resources inspecting the response, but just rendering the component.
 
+> [!TIP]
+>
 > Don't worry if you have duplicate Poke components in your view. The script is rendered only once, and even if not, the script only runs once.
 
 ## Configuration
@@ -180,6 +183,8 @@ return [
 ];
 ```
 
+> [!INFO]
+> 
 > The poke routes are registered at boot time.
 
 #### Name
@@ -268,4 +273,4 @@ If you discover any security related issues, please email darkghosthunter@gmail.
 
 This specific package version is licensed under the terms of the [MIT License](LICENSE.md), at time of publishing.
 
-[Laravel](https://laravel.com) is a Trademark of [Taylor Otwell](https://github.com/TaylorOtwell/). Copyright © 2011-2023 Laravel LLC.
+[Laravel](https://laravel.com) is a Trademark of [Taylor Otwell](https://github.com/TaylorOtwell/). Copyright © 2011-2024 Laravel LLC.
