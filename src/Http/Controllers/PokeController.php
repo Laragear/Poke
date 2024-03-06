@@ -8,8 +8,6 @@ class PokeController
 {
     /**
      * Return an empty Ok response to the Poke script.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function __invoke(): Response
     {

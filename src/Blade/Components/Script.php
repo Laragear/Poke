@@ -2,9 +2,9 @@
 
 namespace Laragear\Poke\Blade\Components;
 
-use function config;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use function config;
 use function url;
 use function view;
 
@@ -12,8 +12,6 @@ class Script extends Component
 {
     /**
      * Create a new component instance.
-     *
-     * @param  bool  $force
      */
     public function __construct(protected bool $force = false)
     {
@@ -21,9 +19,7 @@ class Script extends Component
     }
 
     /**
-     * Get the view / view contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|string
+     * @inheritdoc
      */
     public function render(): View|string
     {
