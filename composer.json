@@ -3,7 +3,7 @@
     "description": "Keep your forms alive, avoid TokenMismatchException by gently poking your Laravel app",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "keywords": [
         "laravel",
@@ -26,16 +26,15 @@
     },
     "require": {
         "php": "8.*",
-        "laragear/meta": "^2.0.2",
-        "illuminate/http": "9.*|10.*",
-        "illuminate/routing": "9.*|10.*",
-        "illuminate/support": "9.*|10.*",
-        "illuminate/view": "9.*|10.*"
+        "laragear/meta": "3.*",
+        "illuminate/http": "10.*|11.*",
+        "illuminate/routing": "10.*|11.*",
+        "illuminate/support": "10.*|11.*",
+        "illuminate/view": "10.*|11.*"
     },
     "require-dev": {
-        "laragear/meta-testing": "^1.2.2",
-        "orchestra/testbench": "^7.22|8.*",
-        "nikic/php-parser": "^4.15.3"
+        "laragear/meta-testing": "2.*",
+        "orchestra/testbench": "8.*|9.*"
     },
     "autoload-dev": {
         "psr-4": {

@@ -3,20 +3,21 @@
 namespace Laragear\Poke\Http\Middleware;
 
 use Closure;
-use function csrf_field;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Laragear\Poke\Blade\Components\Script;
+use Symfony\Component\HttpFoundation\Response;
+use function csrf_field;
 use function strpos;
 use function substr_replace;
-use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @internal
+ */
 class InjectScript
 {
     /**
      * Create a new middleware instance.
-     *
-     * @param  string  $mode
      */
     public function __construct(protected string $mode)
     {
@@ -25,11 +26,6 @@ class InjectScript
 
     /**
      * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $force
-     * @return mixed
      */
     public function handle(Request $request, Closure $next, string $force = null): mixed
     {
@@ -44,11 +40,6 @@ class InjectScript
 
     /**
      * Determine if we should inject the script into the response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Http\Response  $response
-     * @param  bool  $force
-     * @return bool
      */
     public function shouldInject(Request $request, Response $response, bool $force): bool
     {
@@ -68,9 +59,6 @@ class InjectScript
 
     /**
      * Detect if the Response has form or CSRF Token.
-     *
-     * @param  \Illuminate\Http\Response  $response
-     * @return bool
      */
     protected function hasCsrfInput(Response $response): bool
     {
@@ -80,14 +68,11 @@ class InjectScript
     /**
      * Sets the Script in the body.
      *
-     * @param  \Illuminate\Http\Response  $response
-     * @return void
-     *
      * @see https://github.com/php/php-src/blob/05023a281ddb62186fa47f51192ea51ba10f3a9b/ext/standard/string.c#L1845
      */
     protected function injectScript(Response $response): void
     {
-        $content = $response->content();
+        $content = $response->getContent();
 
         // With an offset of just 32 characters, we'll speed up the lookup
         // since the ending `</body>` tag can be found at the end of the
