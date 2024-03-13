@@ -65,7 +65,7 @@ If there is any match, this will inject the Poke script in charge to keep the fo
 
 This mode won't inject the script on error responses or redirections.
 
-> [!INFO]
+> [!NOTE]
 >
 > It's recommended to use the other modes if your application has many routes or Responses with a lot of text.
 
@@ -183,7 +183,7 @@ return [
 ];
 ```
 
-> [!INFO]
+> [!NOTE]
 > 
 > The poke routes are registered at boot time.
 
