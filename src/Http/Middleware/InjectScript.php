@@ -28,7 +28,7 @@ class InjectScript
     /**
      * Handle the incoming request.
      */
-    public function handle(Request $request, Closure $next, string $force = null): mixed
+    public function handle(Request $request, Closure $next, ?string $force = null): mixed
     {
         $response = $next($request);
 
