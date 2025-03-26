@@ -15,6 +15,8 @@ class RouteGeneratorTest extends TestCase
             'domain' => null,
             'middleware' => 'test-middleware',
         ]);
+
+        $app->make('config')->set('filesystems.disks.local.serve', false);
     }
 
     /**
@@ -69,6 +71,8 @@ class RouteGeneratorTest extends TestCase
             'domain' => ['one', 'two', 'three'],
             'middleware' => 'test-middleware',
         ]);
+
+        $app->make('config')->set('filesystems.disks.local.serve', false);
     }
 
     /**
