@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel as HttpContract;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use function method_exists;
 
 /**
  * @internal
@@ -45,8 +46,11 @@ class PokeServiceProvider extends ServiceProvider
         $router->aliasMiddleware('poke', Http\Middleware\InjectScript::class);
 
         // If Larapoke is set to auto, push it as global middleware.
-        if ($config->get('poke.mode') === 'auto') {
-            $this->app->make(HttpContract::class)->appendMiddlewareToGroup('web', Http\Middleware\InjectScript::class);
+        if (
+            $config->get('poke.mode') === 'auto' &&
+            method_exists($kernel = $this->app->make(HttpContract::class), 'appendMiddlewareToGroup')
+        ) {
+            $kernel->appendMiddlewareToGroup('web', Http\Middleware\InjectScript::class);
         }
 
         if ($this->app->runningInConsole()) {
