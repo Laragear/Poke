@@ -2,7 +2,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laragear/poke.svg)](https://packagist.org/packages/laragear/poke)
 [![Latest stable test run](https://github.com/Laragear/Poke/workflows/Tests/badge.svg)](https://github.com/Laragear/Poke/actions)
 [![Codecov coverage](https://codecov.io/gh/Laragear/Poke/branch/1.x/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke)
-[![Maintainability](https://api.codeclimate.com/v1/badges/3954af3144475603ae67/maintainability)](https://codeclimate.com/github/Laragear/Poke/maintainability)
+[![Maintainability](https://qlty.sh/badges/0055e2d2-7044-4ed6-997c-c0cc5ff49567/maintainability.svg)](https://qlty.sh/gh/Laragear/projects/Poke)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Laragear_Poke&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laragear_Poke)
 [![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/11.x/octane#introduction)
 
