@@ -12,11 +12,11 @@ Keep your forms alive, avoid `TokenMismatchException` by gently poking your Lara
 
 [![](.github/assets/support.png)](https://github.com/sponsors/DarkGhostHunter)
 
-Your support allows me to keep this package free, up-to-date and maintainable. Alternatively, you can **[spread the word!](http://twitter.com/share?text=I%20am%20using%20this%20cool%20PHP%20package&url=https://github.com%2FLaragear%2FPoke&hashtags=PHP,Laravel)**
+Your support allows me to keep this package free, up-to-date and maintainable. Alternatively, you can **spread the word on social media!**
 
 ## Requirements
 
-* Laravel 10 or later.
+* Laravel 11 or later.
 
 ## Installation
 
@@ -267,7 +267,7 @@ There should be no problems using this package with Laravel Octane.
 
 ## Security
 
-If you discover any security related issues, please email darkghosthunter@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please [use the online form](https://github.com/Laragear/Poke/security).
 
 # License
 
