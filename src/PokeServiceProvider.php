@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel as HttpContract;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+
 use function method_exists;
 
 /**
