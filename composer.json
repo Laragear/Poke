@@ -25,16 +25,16 @@
         "issues": "https://github.com/laragear/poke/issues"
     },
     "require": {
-        "php": "^8.1",
-        "laragear/meta": "3.*",
-        "illuminate/http": "10.*|11.*",
-        "illuminate/routing": "10.*|11.*",
-        "illuminate/support": "10.*|11.*",
-        "illuminate/view": "10.*|11.*"
+        "php": "^8.2",
+        "laragear/meta": "4.*",
+        "illuminate/http": "11.*|12.*",
+        "illuminate/routing": "11.*|12.*",
+        "illuminate/support": "11.*|12.*",
+        "illuminate/view": "11.*|12.*"
     },
     "require-dev": {
-        "laragear/meta-testing": "2.*",
-        "orchestra/testbench": "8.*|9.*"
+        "laragear/meta-testing": "3.*",
+        "orchestra/testbench": "9.*|10.*"
     },
     "autoload-dev": {
         "psr-4": {

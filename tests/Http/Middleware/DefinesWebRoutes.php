@@ -10,7 +10,7 @@ use function response;
 
 trait DefinesWebRoutes
 {
-    protected function defineWebRoutes($router)
+    protected function defineWebRoutes($router): void
     {
         $router->get('form', function () {
             return Blade::render(

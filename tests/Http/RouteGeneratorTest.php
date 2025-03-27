@@ -3,6 +3,7 @@
 namespace Tests\Http;
 
 use Laragear\Poke\Http\Controllers\PokeController;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
 use Tests\TestCase;
 
 class RouteGeneratorTest extends TestCase
@@ -17,16 +18,10 @@ class RouteGeneratorTest extends TestCase
         ]);
     }
 
-    /**
-     * @define-env usesNoDomain
-     */
+    #[DefineEnvironment('usesNoDomain')]
     public function test_sets_global_route(): void
     {
-        $routes = $this->app->make('router')->getRoutes()->getRoutes();
-
-        static::assertCount(1, $routes);
-
-        $route = $routes[0];
+        $route = $this->app->make('router')->getRoutes()->getByName('test-name');
 
         static::assertSame('test-name', $route->getName());
         static::assertSame(['HEAD'], $route->methods());
@@ -46,12 +41,10 @@ class RouteGeneratorTest extends TestCase
         ]);
     }
 
-    /**
-     * @define-env usesSingleDomain
-     */
+    #[DefineEnvironment('usesSingleDomain')]
     public function test_set_one_domain_route(): void
     {
-        $route = $this->app->make('router')->getRoutes()->getRoutes()[0];
+        $route = $this->app->make('router')->getRoutes()->getByName('test-name');
 
         static::assertSame('test-name', $route->getName());
         static::assertSame(['HEAD'], $route->methods());
@@ -71,11 +64,9 @@ class RouteGeneratorTest extends TestCase
         ]);
     }
 
-    /**
-     * @define-env usesNoRoute
-     */
+    #[DefineEnvironment('usesNoRoute')]
     public function test_doesnt_register_route(): void
     {
-        static::assertEmpty($this->app->make('router')->getRoutes()->getRoutes());
+        static::assertNull($this->app->make('router')->getRoutes()->getByName('test-name'));
     }
 }
