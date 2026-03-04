@@ -26,7 +26,7 @@
     },
     "require": {
         "php": "^8.2",
-        "laragear/meta": "4.*",
+        "laragear/meta": "4.* || 5.*",
         "illuminate/http": "11.*|12.*",
         "illuminate/routing": "11.*|12.*",
         "illuminate/support": "11.*|12.*",
