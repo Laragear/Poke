@@ -9,6 +9,7 @@ use Laragear\Poke\Blade\Components\Script;
 use Laragear\Poke\Http\Controllers\PokeController;
 use Laragear\Poke\Http\Middleware\InjectScript;
 use Laragear\Poke\PokeServiceProvider;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
 
 class PokeServiceProviderTest extends TestCase
 {
@@ -48,9 +49,7 @@ class PokeServiceProviderTest extends TestCase
         $app->make('config')->set('poke.mode', 'non-auto');
     }
 
-    /**
-     * @define-env setModeToNonAuto
-     */
+    #[DefineEnvironment('setModeToNonAuto')]
     public function test_doesnt_registers_web_middleware_if_mode_not_auto(): void
     {
         static::assertNotContains(InjectScript::class, $this->app->make(Kernel::class)->getMiddlewareGroups()['web']);

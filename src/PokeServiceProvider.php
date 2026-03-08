@@ -15,8 +15,8 @@ use function method_exists;
  */
 class PokeServiceProvider extends ServiceProvider
 {
-    public const CONFIG = __DIR__.'/../config/poke.php';
-    public const VIEWS = __DIR__.'/../resources/views';
+    public const string CONFIG = __DIR__.'/../config/poke.php';
+    public const string VIEWS = __DIR__.'/../resources/views';
 
     /**
      * Register any application services.

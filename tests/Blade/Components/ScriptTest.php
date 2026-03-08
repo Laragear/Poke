@@ -3,6 +3,7 @@
 namespace Tests\Blade\Components;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
 use Tests\TestCase;
 
 class ScriptTest extends TestCase
@@ -44,9 +45,7 @@ class ScriptTest extends TestCase
         $app->make('config')->set('poke.poking.route', 'test');
     }
 
-    /**
-     * @define-env useRandomConfig
-     */
+    #[DefineEnvironment('useRandomConfig')]
     public function test_renders_script_from_component_with_custom_values(): void
     {
         $view = $this->blade('<x-poke-script />');

@@ -1,10 +1,10 @@
 # Poke
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laragear/poke.svg)](https://packagist.org/packages/laragear/poke)
 [![Latest stable test run](https://github.com/Laragear/Poke/workflows/Tests/badge.svg)](https://github.com/Laragear/Poke/actions)
-[![Codecov coverage](https://codecov.io/gh/Laragear/Poke/branch/1.x/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke)
+[![Codecov coverage](https://codecov.io/gh/Laragear/Poke/graph/badge.svg?token=0ELJR5X90J)](https://codecov.io/gh/Laragear/Poke)
 [![Maintainability](https://qlty.sh/badges/0055e2d2-7044-4ed6-997c-c0cc5ff49567/maintainability.svg)](https://qlty.sh/gh/Laragear/projects/Poke)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Laragear_Poke&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laragear_Poke)
-[![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/11.x/octane#introduction)
+[![Laravel Octane Compatibility](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://laravel.com/docs/13.x/octane#introduction)
 
 Keep your forms alive, avoid `TokenMismatchException` by gently poking your Laravel app.
 
@@ -16,7 +16,8 @@ Your support allows me to keep this package free, up-to-date and maintainable. A
 
 ## Requirements
 
-* Laravel 11 or later.
+* PHP 8.3 or later
+* Laravel 12 or later
 
 ## Installation
 
@@ -267,10 +268,10 @@ There should be no problems using this package with Laravel Octane.
 
 ## Security
 
-If you discover any security related issues, please [use the online form](https://github.com/Laragear/Poke/security).
+If you discover any security-related issues, please [use the online form](https://github.com/Laragear/Poke/security).
 
 # License
 
-This specific package version is licensed under the terms of the [MIT License](LICENSE.md), at time of publishing.
+This specific package version is licensed under the terms of the [MIT License](LICENSE.md), at the time of publishing.
 
-[Laravel](https://laravel.com) is a Trademark of [Taylor Otwell](https://github.com/TaylorOtwell/). Copyright © 2011-2024 Laravel LLC.
+[Laravel](https://laravel.com) is a Trademark of [Taylor Otwell](https://github.com/TaylorOtwell/). Copyright © 2011–2026 Laravel LLC.
