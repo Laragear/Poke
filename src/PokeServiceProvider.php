@@ -2,12 +2,14 @@
 
 namespace Laragear\Poke;
 
+use Filament\Support\View\ViewManager;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel as HttpContract;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\View\Compilers\BladeCompiler;
+use Livewire\Livewire;
 use function method_exists;
 
 /**
@@ -59,5 +61,32 @@ class PokeServiceProvider extends ServiceProvider
             // @phpstan-ignore-next-line
             $this->publishes([static::VIEWS => $this->app->viewPath('vendor/poke')], 'views');
         }
+
+        if ($this->app->bound(\Filament\Support\View\ViewManager::class)) {
+            $this->registerFilamentHooks();
+        }
+    }
+
+    /**
+     * Registers Filament PHP Hooks for rendering.
+     */
+    protected function registerFilamentHooks(): void
+    {
+        $this->app->make(\Livewire\LivewireManager::class)->listen(
+            'render',
+            static function (\Livewire\Component $component): void {
+                // Dispatch the event to the frontend if the Page implements Forms.
+                if ($component instanceof \Filament\Forms\Contracts\HasForms) {
+                    $component->dispatch('poke:renew');
+                }
+            }
+        );
+
+        $this->app->make(\Filament\Support\View\ViewManager::class)->registerRenderHook(
+            \Filament\View\PanelsRenderHook::BODY_END,
+            static function (): string {
+                return BladeCompiler::render('<x-poke-script force />');
+            }
+        );
     }
 }

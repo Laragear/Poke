@@ -39,6 +39,7 @@ class Script extends Component
 
         return view('poke::script', [
             'route' => url($config['poke.poking.route']),
+            'times' => $config['poke.times'],
             'interval' => (int) ($session / $config['poke.times']),
             'lifetime' => $session,
         ]);

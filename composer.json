@@ -33,6 +33,8 @@
         "illuminate/view": "12.*|13.*"
     },
     "require-dev": {
+        "livewire/livewire": "4.*",
+        "filament/filament": "5.*",
         "laragear/meta-testing": "4.*",
         "orchestra/testbench": "10.*|11.*"
     },
