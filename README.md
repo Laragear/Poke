@@ -118,6 +118,58 @@ This may be useful if you have large responses, like blog posts, articles or gal
 >
 > Don't worry if you have duplicate Poke components in your view. The script is rendered only once, and even if not, the script only runs once.
 
+## Livewire Trait
+
+> [!TIP]
+> 
+> To use the Livewire Trait, it's recommended to [use the Blade mode](#blade). 
+
+If you're using Livewire, you can use the `Laragear\Poke\Livewire\InteractsWithPoke` trait in your components to _dispatch_ an even on your page. The only thing required is to [use the Blade](#blade) mode, or add [force](#blade) with the `force` attribute.
+
+```blade
+<body>
+    <!-- ... -->
+    
+    <x-poke-script force /> <!-- Render the script in the body -->
+</body>
+```
+
+In your component, if the trait is used, the `poke:renew` will be dispatched to the frontend, renewing the poke when the component is rendered.
+
+```php
+use Laragear\Poke\Livewire\InteractsWithPoke;
+use Livewire\Component as LivewireComponent;
+
+class MyCustomForm extends LivewireComponent
+{
+    use InteractsWithPoke;
+    
+    // ...
+}
+```
+
+## Filament PHP
+
+> [!TIP]
+>
+> To use the Poke script with Filament, it's recommended to [use the Blade mode](#blade).
+
+If you're using Filament PHP, you don't need to worry. When you render a Resource with a form, or a page that implements the `HasForms` contract, the script will be automatically injected before the body end tag.
+
+If you're using a custom Page, you will need to use the [Livewire Trait](#livewire-trait).
+
+```php
+use Filament\Pages\Page;
+use Laragear\Poke\Livewire\InteractsWithPoke;
+
+class Onboarding extends Page
+{
+    use InteractsWithPoke;
+    
+    // ...
+}
+```
+
 ## Configuration
 
 For fine-tuning, you can publish the `poke.php` config file.

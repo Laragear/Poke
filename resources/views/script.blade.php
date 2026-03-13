@@ -1,39 +1,89 @@
 @once
     <script>
         // start-poke-script
-        if (typeof poke_renew === 'undefined') {
-            let poke_last = new Date();
+        if (window.Poke === undefined) {
+            window.Poke = {
+                started: false,
+                route: '{{ $route }}',
+                lastPoke: undefined,
+                intervalId: undefined,
+                interval: {{ $interval }},
+                retries: {{ $times }},
+                retriesLeft: undefined,
+                lifetime: {{ $lifetime }},
+                isListeningOnLivewire: false,
+                listenLivewire: () => {
+                    if (window.Livewire) {
+                        console.info('Livewire is not available');
 
-            const poke_renew = async () => {
-                await fetch('{{ $route }}', {
-                    method: 'HEAD',
-                    cache: 'no-cache',
-                    redirect: 'error',
-                }).then(data => {
-                    if (data.status === 204) {
-                        poke_last = new Date();
+                        return
                     }
 
-                    poke_expire_check();
-                }).catch(error => {
-                    console.error('Error while poking: ', error);
-                });
-            };
+                    // If we already registered the listener on Livewire, don't do it again.
+                    if (this.isListeningOnLivewire) {
+                        return
+                    }
 
-            const poke_expire_check = () => {
-                if (navigator.onLine && new Date() - poke_last >= {{ $interval }} + {{ $lifetime }}) {
-                    window.location.reload();
-                }
-            };
+                    window.Livewire.on('poke:check', this.renew)
+                },
+                stop: () => {
+                    window.removeEventListener('online', this.expireCheck, false)
+                    document.removeEventListener('visibilitychange', this.expireCheckWhenNotHidden, false)
+                    document.removeEventListener('livewire:init', this.listenLivewire, false)
+                    this.intervalId !== undefined && clearInterval(this.intervalId) && (this.intervalId = undefined)
+                    this.retriesLeft = this.retries
+                },
+                start: () => {
+                    if (this.started) {
+                        throw new Error('Poke script already started')
+                    }
 
-            setInterval(() => { poke_renew(); }, {{ $interval }} );
+                    this.retriesLeft = this.retries
 
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState !== 'hidden') { poke_expire_check(); }
-            }, false);
+                    this.lastPoke = new Date()
 
-            window.addEventListener('online', poke_expire_check, false);
+                    this.intervalId = setInterval(this.renew, this.interval)
+
+                    this.started = true
+                },
+                startIfNotStarted: () => {
+                    if (this.started) {
+                        return
+                    }
+
+                    window.addEventListener('online', this.expireCheck, false)
+                    document.addEventListener('visibilitychange', this.expireCheckWhenNotHidden, false)
+                    document.addEventListener('livewire:init', this.listenLivewire, false)
+
+                    this.start()
+                },
+                expireCheckWhenNotHidden: () => document.visibilityState !== 'hidden' && this.expireCheck(),
+                expireCheck: () => {
+                    if (navigator.onLine && new Date() - this.lastPoke >= this.interval + this.lifetime) {
+                        window.location.reload()
+                    }
+                },
+                renew: async () => {
+                    await fetch(this.route, {
+                        method: 'HEAD',
+                        cache: 'no-cache',
+                        redirect: 'error',
+                    }).then(data => {
+                        if ([204, 200].includes(data.status)) {
+                            this.lastPoke = new Date()
+                        }
+
+                        this.expireCheck()
+                    }).catch(error => {
+                        (--this.retriesLeft) < 1 && this.stop()
+
+                        console.error('Error while poking: ', error)
+                    });
+                },
+            }
         }
+
+        window.Poke.startIfNotStarted()
         // end-poke-script
     </script>
 @endonce
