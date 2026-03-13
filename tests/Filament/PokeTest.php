@@ -36,6 +36,11 @@ class PokeTest extends TestCase
         ];
     }
 
+    protected function getPackageAliases($app)
+    {
+        return [Livewire::class];
+    }
+
     protected function setUp(): void
     {
         $this->markTestSkippedUnless(class_exists(FilamentServiceProvider::class), 'Filament 5.x is not installed');

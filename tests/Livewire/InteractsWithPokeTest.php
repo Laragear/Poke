@@ -18,6 +18,11 @@ class InteractsWithPokeTest extends TestCase
         ];
     }
 
+    protected function getPackageAliases($app)
+    {
+        return [Livewire::class];
+    }
+
     public function test_dispatches_event_on_render()
     {
         Livewire::test(TestComponentWithPoke::class)
