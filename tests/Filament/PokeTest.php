@@ -18,6 +18,7 @@ use Laragear\Poke\Livewire\InteractsWithPoke;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Tests\TestCase;
+use function class_exists;
 
 class PokeTest extends TestCase
 {
@@ -32,6 +33,11 @@ class PokeTest extends TestCase
             LivewireServiceProvider::class,
             TestPanel::class,
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->markTestSkippedUnless(class_exists(FilamentServiceProvider::class), 'Filament 5.x is not installed');
     }
 
     public function test_registers_body_end_hook(): void
