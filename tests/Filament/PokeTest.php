@@ -18,6 +18,7 @@ use Laragear\Poke\Livewire\InteractsWithPoke;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Tests\TestCase;
+
 use function class_exists;
 
 class PokeTest extends TestCase
