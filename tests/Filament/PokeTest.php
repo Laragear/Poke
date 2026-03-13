@@ -67,45 +67,47 @@ class PokeTest extends TestCase
     }
 }
 
-class TestPage extends Page
-{
-    use InteractsWithForms;
-
-    protected string $view = 'filament-panels::pages.simple';
-
-    public function hasLogo()
+if (class_exists(FilamentServiceProvider::class)) {
+    class TestPage extends Page
     {
-        return false;
+        use InteractsWithForms;
+
+        protected string $view = 'filament-panels::pages.simple';
+
+        public function hasLogo()
+        {
+            return false;
+        }
     }
-}
 
-class TestPageWithForms extends TestPage implements HasForms
-{
-    //
-}
-
-class TestPageWithTraitPoke extends TestPage
-{
-    use InteractsWithPoke;
-
-    public function content(Schema $schema): Schema
+    class TestPageWithForms extends TestPage implements HasForms
     {
-        return $schema->components([]);
+        //
     }
-}
 
-class TestPanel extends PanelProvider
-{
-    public function panel(Panel $panel): Panel
+    class TestPageWithTraitPoke extends TestPage
     {
-        return $panel
-            ->default()
-            ->id('test')
-            ->path('app')
-            ->pages([
-                TestPage::class,
-                TestPageWithForms::class,
-                TestPageWithTraitPoke::class,
-            ]);
+        use InteractsWithPoke;
+
+        public function content(Schema $schema): Schema
+        {
+            return $schema->components([]);
+        }
+    }
+
+    class TestPanel extends PanelProvider
+    {
+        public function panel(Panel $panel): Panel
+        {
+            return $panel
+                ->default()
+                ->id('test')
+                ->path('app')
+                ->pages([
+                    TestPage::class,
+                    TestPageWithForms::class,
+                    TestPageWithTraitPoke::class,
+                ]);
+        }
     }
 }
