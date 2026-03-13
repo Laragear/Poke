@@ -36,7 +36,7 @@ class PokeTest extends TestCase
         ];
     }
 
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [Livewire::class];
     }
@@ -44,6 +44,8 @@ class PokeTest extends TestCase
     protected function setUp(): void
     {
         $this->markTestSkippedUnless(class_exists(FilamentServiceProvider::class), 'Filament 5.x is not installed');
+
+        parent::setUp();
     }
 
     public function test_registers_body_end_hook(): void
