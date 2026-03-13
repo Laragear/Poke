@@ -34,9 +34,9 @@ class ScriptTest extends TestCase
         $view = $this->blade('<x-poke-script />');
 
         $view->assertSee("route: 'http://localhost/poke'", false);
-        $view->assertSee("retries: 4", false);
-        $view->assertSee("interval: 1800000", false);
-        $view->assertSee("lifetime: 7200000", false);
+        $view->assertSee('retries: 4', false);
+        $view->assertSee('interval: 1800000', false);
+        $view->assertSee('lifetime: 7200000', false);
     }
 
     public function useRandomConfig($app): void
@@ -52,8 +52,8 @@ class ScriptTest extends TestCase
         $view = $this->blade('<x-poke-script />');
 
         $view->assertSee("route: 'http://localhost/test'", false);
-        $view->assertSee("retries: 10", false);
-        $view->assertSee("interval: 600000", false);
-        $view->assertSee("lifetime: 6000000", false);
+        $view->assertSee('retries: 10', false);
+        $view->assertSee('interval: 600000', false);
+        $view->assertSee('lifetime: 6000000', false);
     }
 }
